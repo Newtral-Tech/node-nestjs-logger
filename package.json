@@ -1,7 +1,7 @@
 {
   "name": "@newtral/nestjs-logger",
   "version": "0.0.0-development",
-  "description": "Logger module for NestJS",
+  "description": "Logger module for the NestJS framework",
   "main": "lib/index.js",
   "module": "esm/index.js",
   "types": "lib/index.d.ts",
@@ -19,13 +19,22 @@
   "engines": {
     "node": ">=10.18"
   },
-  "dependencies": {},
+  "keywords": [
+    "newtral",
+    "nestjs",
+    "logger",
+    "logger module",
+    "pino"
+  ],
+  "dependencies": {
+    "@types/node": "*",
+    "@types/pino": "^6.0.1",
+    "pino": "^6.3.0",
+    "pino-pretty": "^4.0.0"
+  },
   "devDependencies": {
     "@nestjs/common": "^7.1.0",
-    "@nestjs/core": "^7.1.0",
-    "@nestjs/testing": "^7.1.0",
     "@types/chai": "^4.2.11",
-    "@types/faker": "^4.1.12",
     "@types/mocha": "^7.0.2",
     "@typescript-eslint/eslint-plugin": "^3.0.1",
     "@typescript-eslint/parser": "^3.0.1",
