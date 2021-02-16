@@ -1,6 +1,6 @@
 import { DynamicModule, Module, Provider } from '@nestjs/common';
 import { ModuleMetadata } from '@nestjs/common/interfaces';
-import { LevelWithSilent, LoggerOptions } from 'pino';
+import { LevelWithSilent } from 'pino';
 import { LOGGER_LOG_LEVEL, LOGGER_OPTIONS, LOGGER_PRETTY_PRINT } from './logger.keys';
 import { LoggerService } from './logger.service';
 
@@ -40,7 +40,7 @@ export class LoggerModule {
     };
   }
 
-  static forRoot(options: LoggerOptions): DynamicModule {
+  static forRoot(options: LoggerModuleOptions): DynamicModule {
     const providers: Provider[] = [
       ...getCommonProviders(),
       {
