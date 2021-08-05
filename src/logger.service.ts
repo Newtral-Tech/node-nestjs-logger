@@ -21,7 +21,9 @@ export class LoggerService {
   getLogger(moduleOrName: NodeJS.Module | string, level = this.level): Logger {
     const loggerName = typeof moduleOrName === 'string' ? moduleOrName : this.getNameFromModule(moduleOrName);
 
-    return this.logger.child({ name: loggerName, level });
+    // @ts-expect-error Types does not match the actual method signature
+    // **level** is deprecated in bindings and should be used as second parameter as options
+    return this.logger.child({ name: loggerName }, { level });
   }
 
   private getNameFromModule({ filename }: NodeJS.Module) {
