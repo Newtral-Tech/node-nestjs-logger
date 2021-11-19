@@ -1,17 +1,28 @@
 import { Inject, Injectable } from '@nestjs/common';
 import path from 'path';
-import pino, { LevelWithSilent } from 'pino';
+import pino from 'pino';
 import { LOGGER_LOG_LEVEL, LOGGER_PRETTY_PRINT } from './logger.keys';
 import { Logger } from './logger.types';
 
 @Injectable()
 export class LoggerService {
-  private readonly logger = pino({ level: this.level, prettyPrint: this.prettyPrint, timestamp: pino.stdTimeFunctions.isoTime });
+  private readonly logger: pino.Logger;
 
   constructor(
-    @Inject(LOGGER_LOG_LEVEL) private readonly level: LevelWithSilent,
+    @Inject(LOGGER_LOG_LEVEL) private readonly level: pino.LevelWithSilent,
     @Inject(LOGGER_PRETTY_PRINT) private readonly prettyPrint: boolean = true
-  ) {}
+  ) {
+    if (this.prettyPrint) {
+      const transport = pino.transport({
+        target: 'pino-pretty',
+        options: { destination: 1, level: this.level, colorize: true, translateTime: 'yyyy-mm-dd"T"HH:MM:ss.l"Z"' }
+      });
+
+      this.logger = pino(transport);
+    } else {
+      this.logger = pino({ level: this.level, timestamp: pino.stdTimeFunctions.isoTime });
+    }
+  }
 
   /**
    * Create a new logger
@@ -21,8 +32,6 @@ export class LoggerService {
   getLogger(moduleOrName: NodeJS.Module | string, level = this.level): Logger {
     const loggerName = typeof moduleOrName === 'string' ? moduleOrName : this.getNameFromModule(moduleOrName);
 
-    // @ts-expect-error Types does not match the actual method signature
-    // **level** is deprecated in bindings and should be used as second parameter as options
     return this.logger.child({ name: loggerName }, { level });
   }
 

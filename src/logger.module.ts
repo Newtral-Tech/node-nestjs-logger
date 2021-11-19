@@ -1,6 +1,6 @@
 import { DynamicModule, Module, Provider } from '@nestjs/common';
 import { ModuleMetadata } from '@nestjs/common/interfaces';
-import { LevelWithSilent } from 'pino';
+import pino from 'pino';
 import { LOGGER_LOG_LEVEL, LOGGER_OPTIONS, LOGGER_PRETTY_PRINT } from './logger.keys';
 import { LoggerService } from './logger.service';
 
@@ -58,7 +58,7 @@ export class LoggerModule {
 }
 
 export interface LoggerModuleOptions {
-  logLevel?: LevelWithSilent;
+  logLevel?: pino.LevelWithSilent;
   prettyPrint?: boolean;
 }
 
