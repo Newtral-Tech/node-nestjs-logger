@@ -1,6 +1,6 @@
 {
   "name": "@newtral/nestjs-logger",
-  "version": "0.0.0-development",
+  "version": "4.3.0",
   "description": "Logger module for the NestJS framework",
   "main": "lib/index.js",
   "module": "esm/index.js",
