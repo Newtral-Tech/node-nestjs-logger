@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@nestjs/common": "^8.2.5",
-    "@nestjs/core": "^8.2.5",
+    "@nestjs/core": "^9.0.5",
     "@nestjs/testing": "^8.2.5",
     "@types/chai": "^4.3.0",
     "@types/mocha": "^9.0.0",
@@ -59,7 +59,7 @@
   },
   "peerDependencies": {
     "@nestjs/common": "^8.2.5",
-    "@nestjs/core": "^8.2.5"
+    "@nestjs/core": "^9.0.5"
   },
   "scripts": {
     "prebuild": "npm run clean",
